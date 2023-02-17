@@ -17,8 +17,8 @@ jobs:
         run: |
           mkdir -p generic
           mkdir -p foxyproxy
-          declare -a countrycode=("au" "ca" "fr" "de" "hk" "in" "jp" "nl" "sg" "se" "ch" "tw" "uk" "us")
-          declare -a countryid=("13" "38" "74" "81" "97" "100" "108" "153" "195" "208" "209" "211" "227" "228")
+          declare -a countrycode=("au" "ca" "fr" "de" "hk" "id" "jp" "nl" "sg" "se" "ch" "tw" "uk" "us")
+          declare -a countryid=("13" "38" "74" "81" "97" "101" "108" "153" "195" "208" "209" "211" "227" "228")
           for (( i=0; i<${#countrycode[@]}; i++ ));
           do
             curl --silent "https://api.nordvpn.com/v1/servers/recommendations?filters\[country_id\]=${countryid[$i]}&filters\[servers_technologies\]\[identifier\]=proxy_ssl&limit=100" | jq --raw-output '.[].hostname' > generic/${countrycode[$i]}.txt
